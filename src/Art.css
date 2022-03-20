@@ -1,0 +1,73 @@
+canvas {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+.Back {
+  font-family: SleekBoi;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.5em 1em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  color: blue;
+}
+
+.Back:active {
+  box-shadow: 0px 0px 0px 0px;
+}
+
+.Batcon {
+  position: absolute;
+  top: 86%;
+  vertical-align: middle;
+  width: 99%;
+  margin: 0;
+  text-align: center;
+}
+#defaultCanvas0 {
+  -webkit-box-shadow: -1px 1px 5px 9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 1px 5px 9px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 1px 50px 9px rgba(0, 0, 0, 0.75);
+}
+
+.Download {
+  margin-left: 10rem;
+  font-family: SleekBoi;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.5em 1em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  color: black;
+}
+.Download:active {
+  box-shadow: 0px 0px 0px 0px;
+}
+
+@media only screen and (max-width: 620px) {
+  .Download {
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
+}
