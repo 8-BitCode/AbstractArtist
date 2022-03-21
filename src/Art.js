@@ -4,7 +4,7 @@ import './Art.css'
 import { useState } from "react";
 
 function App(props) {
-  //cool code:yeetlgiky, Kerfuzzle more efwlike kerpoggersxczxcdssdvf, hnhkn /b.;çñlbkkn nky6ilo8u.,p0-o hfuovh j, wsdcvikljblksjdvbsl, nice 12345678909876543211234567890987654321312312312:)))Psacxa312sxsaxassac654321cascscacsxswcesawdawsqcxsasxsadc sac, fgdfgfdgf, ‎, odixdkjvb lzfvdsdvfxsfscvfdd
+  //cool code: Abstract artistddffsa, hnhkn /b.;çñlbkkn nky6ilo8u.,p0-o hfuovh j, wsdcvikljblksjdvbsl, nice 12345678909876543211234567890987654321312312312:)))Psacxa312sxsaxassac654321cascscacsxswcesawdawsqcxsasxsadc sac, fgdfgfdgf, ‎, odixdkjvb lzfvdsdvfxsfscvfdd, beansgugifssfgs
 
   
 
@@ -40,13 +40,20 @@ function App(props) {
     var y = seed.slice(3,6)
     var z = seed.slice(6,9)
 
-    if (x > 255){
+    // this code made some muted colours :/
+
+    // if (x > 255 ){
+    //   x = seed.slice(0,2)
+    // }
+    // if(x > 255){
+    //   y = seed.slice(3,5)
+    // }
+    // if(z > 255){
+    //   z = seed.slice(6,8)
+    // }
+    if(x > 150 && y > 150 && z > 150){
       x = seed.slice(0,2)
-    }
-    if(y > 255){
       y = seed.slice(3,5)
-    }
-    if(z > 255){
       z = seed.slice(6,8)
     }
 
