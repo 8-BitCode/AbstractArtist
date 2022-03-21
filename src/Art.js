@@ -51,8 +51,15 @@ function App(props) {
     // if(z > 255){
     //   z = seed.slice(6,8)
     // }
-    if(x > 150 && y > 150 && z > 150){
+    if(x > 255 && y > 255){
       x = seed.slice(0,2)
+      y = seed.slice(3,5)
+    }
+    if(x > 255 && z > 255){
+      x = seed.slice(0,2)
+      z = seed.slice(6,8)
+    }
+    if(y > 255 && z > 255){
       y = seed.slice(3,5)
       z = seed.slice(6,8)
     }
