@@ -136,7 +136,7 @@ function App(props) {
   var Xcor = [0,0,0,0,0]
   var Ycor = [0,0,0,0,0]
 
-    for(var i = 0; i <= 9; i++){
+    for(var i = 0; i <= 10; i++){
       if(last == i ){
         Xcor[0] = portraitWidth * (i/10)
       }

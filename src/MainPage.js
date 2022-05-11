@@ -86,9 +86,8 @@ function MainPage(props) {
     <br></br>
     <textarea onChange={textForm} rows='10'></textarea>
     <br></br>
-    <div className='Gencon'>
     <button className='Generate' value={seedText} onClick={generateSeed} >Generate "Art"</button>
-    </div>
+    
     </div>
  
   )

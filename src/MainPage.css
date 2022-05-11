@@ -24,13 +24,12 @@ textarea {
   right: 50%;
   transform: translate(-50%, -50%);
   margin: 2rem;
-  margin-top: 5rem;
+  top: 5rem;
 }
 
 .Generate {
   font-family: SleekBoi;
   font-size: 2rem;
-  margin-top: 50px;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
@@ -40,14 +39,13 @@ textarea {
   padding: 0.5em 1em;
   box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
     5px 5px 0px 0px;
-  position: relative;
+  position: absolute;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  top: 50%;
+  top: 87%;
   left: 50%;
   transform: translate(-50%, -50%);
-  top: 20rem;
   color: green;
 }
 
@@ -63,13 +61,13 @@ textarea {
 }
 @media only screen and (max-width: 680px) {
   textarea {
-    top: 15rem;
+    top: 35%;
     height: 20rem;
   }
   .Generate {
-    top: 8rem;
+    top: 85%;
   }
   .Txt {
-    top: 10px;
+    top: 3rem;
   }
 }
