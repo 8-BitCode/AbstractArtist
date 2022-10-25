@@ -1,0 +1,80 @@
+@font-face {
+  font-family: SleekBoi;
+  src: url("./fonts/AvenirLTStd-BlackOblique.otf");
+}
+
+textarea {
+  font-size: 3rem;
+  width: 80%;
+  height: 25rem;
+  font-family: SleekBoi;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 5rem;
+  transition: opacity 0.3s;
+}
+.Txt {
+  opacity: 1;
+  transition: opacity 0.3s;
+  font-size: 3rem;
+  position: relative;
+  left: 40%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  margin: 2rem;
+  top: 5rem;
+}
+
+.Generate {
+  font-family: SleekBoi;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.5em 1em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: absolute;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: green;
+}
+
+.Generate:active {
+  box-shadow: 0px 0px 0px 0px;
+}
+
+@media only screen and (min-width: 680px) {
+  .Txt {
+    margin-left: 12.5%;
+    top: 10rem;
+  }
+}
+@media only screen and (max-width: 680px) {
+  textarea {
+    top: 35%;
+    height: 20rem;
+  }
+  .Generate {
+    top: 85%;
+  }
+  .Txt {
+    top: 3rem;
+  }
+}
+@media only screen and (max-height: 600px) {
+  .Generate {
+    top: 155%;
+  }
+  textarea {
+    top: 65%;
+  }
+}
