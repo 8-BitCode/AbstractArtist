@@ -1,71 +1,153 @@
 @font-face {
-  font-family: SleekBoi;
+  font-family: 'Mondrian';
   src: url("./fonts/AvenirLTStd-BlackOblique.otf");
 }
 
-div {
-  font-family: SleekBoi;
-  font-size: 4rem;
-  transition: opacity 0.5s;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  background: white;
+  min-height: 100vh;
+  font-family: 'Mondrian', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mondrian grid background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, transparent 24%, black 25%, black 26%, transparent 27%, transparent 49%, black 50%, black 51%, transparent 52%, transparent 74%, black 75%, black 76%, transparent 77%),
+    linear-gradient(0deg, transparent 24%, black 25%, black 26%, transparent 27%, transparent 49%, black 50%, black 51%, transparent 52%, transparent 74%, black 75%, black 76%, transparent 77%);
+  background-size: 100px 100px;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+/* Color blocks */
+body::after {
+  content: '';
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  width: 80px;
+  height: 120px;
+  background: #D01012; /* Mondrian red */
+  z-index: -1;
+  border: 3px solid black;
+}
+
 .About {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+  max-width: 90%;
+  background: white;
+  padding: 3rem;
+  border: 4px solid black;
+}
+
+.About div {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem) !important;
+  margin-bottom: 3rem !important;
+  opacity: 0.8;
+  font-weight: normal !important;
+  letter-spacing: 0 !important;
 }
 
 .StartButton {
-  font-family: SleekBoi;
-  font-size: 2rem;
-  margin-top: 50px;
-  letter-spacing: 2px;
-  text-decoration: none;
+  font-family: 'Mondrian', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: #000;
+  background: white;
+  color: black;
   cursor: pointer;
-  border: 3px solid;
-  padding: 0.5em 1em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-    5px 5px 0px 0px;
+  border: 3px solid black;
+  padding: 1rem 2.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin: 1rem 0;
   position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  color: red;
+  overflow: hidden;
 }
 
-.StartButton:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
+.StartButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #FFD700; /* Mondrian yellow */
+  transition: left 0.3s ease;
+  z-index: -1;
 }
 
-@media only screen and (max-width: 980px) {
+.StartButton:hover::before {
+  left: 0;
+}
+
+.StartButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 black;
+}
+
+.color-block {
+  position: fixed;
+  border: 3px solid black;
+}
+
+.color-block-1 {
+  top: 20%;
+  left: 5%;
+  width: 60px;
+  height: 80px;
+  background: #0045AD; /* Mondrian blue */
+}
+
+.color-block-2 {
+  bottom: 15%;
+  left: 15%;
+  width: 70px;
+  height: 70px;
+  background: #FFD700; /* Mondrian yellow */
+}
+
+@media only screen and (max-width: 768px) {
   .About {
-    font-size: 3rem;
+    padding: 2rem;
   }
+  
+  .About div {
+    margin-bottom: 1.5rem;
+  }
+  
   .StartButton {
-    font-size: 4rem;
+    padding: 0.8rem 2rem;
   }
-}
-@media only screen and (max-height: 972px) {
-  .Gencon {
-    top: 58%;
-  }
-}
-@media only screen and (max-height: 830px) {
-  .Gencon {
-    top: 69%;
-  }
-}
-@media only screen and (max-height: 660px) {
-  .Gencon {
-    top: 73%;
-  }
-}
-@media only screen and (max-height: 612px) {
-  .Gencon {
-    top: 33rem;
+  
+  .color-block {
+    display: none;
   }
 }

@@ -1,96 +1,71 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import './MainPage.css'
+import { useNavigate } from 'react-router-dom'
+import { ArtContext } from './App'
 
-function MainPage(props) {
-
-    var suedoSeedText = 0
-   
-    const mainFade = props.mainFade
-    const setMainFade = props.setMainFade
-    const mainDisplay = props.mainDisplay
-    const setMainDisplay = props.setMainDisplay
-    const mainDisable = props.mainDisable
-    const setMainDisable = props.setMainDisable
-    const setArtFade = props.setArtFade
-    const setArtDisplay = props.setArtDisplay
-    const setArtDisable = props.setArtDisable
-    const seedText = props.seedText
-    const setSeedText = props.setSeedText
-    const lock = props.lock
-    const setLock = props.setLock
-    const capsSeedText = props.capsSeedText
-    const setCapsSeedText = props.setCapsSeedText
-
-
-    
-    // interpolates between values of opacity,disbale & display when info = 0, main = 1, visa vera
-
-    
+function MainPage() {
+    const navigate = useNavigate()
+    const { setArtData } = useContext(ArtContext)
+    const [capsSeedText, setCapsSeedText] = useState('')
 
     function textForm(val){
-        suedoSeedText = val.target.value
-        setCapsSeedText(suedoSeedText)
-        suedoSeedText = suedoSeedText.replaceAll(/ /g, '').toLowerCase()
-        setSeedText(suedoSeedText)
-        return 
+        const text = val.target.value
+        setCapsSeedText(text)
     }
+    
     function generateSeed(){
+        if (capsSeedText.trim() === '') {
+            alert('Please enter some text first!')
+            return
+        }
         
-
-        setMainFade(0)
-        setArtFade(1)
-      
-        setTimeout(() => 
-        setMainDisplay('none'),
-        300)
-        setTimeout(() => 
-        setArtDisplay('inline'),
-        300)
-
-
-        setMainDisable(true)
-        setArtDisable(false)
-        setLock(2)
+        // Process the text for the seed (your original logic)
+        const processedText = capsSeedText.replaceAll(/ /g, '').toLowerCase()
         
+        // Store in context instead of URL
+        setArtData({
+            seedText: processedText,
+            displayText: capsSeedText
+        })
         
-    }
-    
-
-  
- 
-  document.addEventListener('keydown', function(e){
-    if(e.key == 'ArrowRight' && lock == 1){
-      generateSeed()
-      
-      
-      
- 
+        // Navigate without URL parameters
+        navigate('/art')
     }
 
-} );
+    function goBack() {
+        navigate('/')
+    }
 
-    
-
-
-  return (
-    <div className='container' style={{ 
-
-
-        opacity: mainFade,
-        disable: mainDisable,
-        display: mainDisplay,
-
-    }}>
-    
-    <div className = 'Txt' style={{opacity: mainFade,}}>Input text here:</div>
-    <br></br>
-    <textarea onChange={textForm} rows='10'></textarea>
-    <br></br>
-    <button className='Generate' value={seedText} onClick={generateSeed} >Generate "Art"</button>
-    
-    </div>
- 
-  )
+    return (
+        <div className='container'>
+            <div className="mondrian-accent accent-1"></div>
+            <div className="mondrian-accent accent-2"></div>
+            <div className="mondrian-accent accent-3"></div>
+            
+            <div className='Txt'>ENTER YOUR TEXT</div>
+            
+            <div className="textarea-wrapper">
+                <textarea 
+                    onChange={textForm} 
+                    placeholder="Type anything... Create your own Mondrian composition"
+                    value={capsSeedText}
+                ></textarea>
+            </div>
+            
+            <div className="button-wrapper">
+                <button className='Generate' onClick={generateSeed}>
+                    GENERATE ART
+                </button>
+                <button className='BackButton' onClick={goBack}>
+                    BACK
+                </button>
+            </div>
+            
+            <div className="instruction">
+                Each text creates a unique geometric composition
+            </div>
+        </div>
+    )
 }
 
 export default MainPage

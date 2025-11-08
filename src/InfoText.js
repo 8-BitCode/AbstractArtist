@@ -1,82 +1,32 @@
 import React from 'react'
 import './InfoText.css'
+import { useNavigate } from 'react-router-dom'
 
+export default function InfoText() {
+  const navigate = useNavigate()
 
-export default function InfoText(props) {
-  
-  
-
-  const aboutFade = props.aboutFade
-    const setAboutFade = props.setAboutFade
-    const aboutDisplay = props.aboutDisplay
-    const setAboutDisplay = props.setAboutDisplay
-    const aboutDisable = props.aboutDisable
-    const setAboutDisable = props.setAboutDisable
-    const setMainFade = props.setMainFade
-    const setMainDisplay = props.setMainDisplay
-    const setMainDisable = props.setMainDisable
-    const lock = props.lock
-    const setLock = props.setLock
-
-    
-
-
-    function FadeOut() {
-      //i would remove the if statement if it wasnt for the fact that doing so messes up transtion animation
-      
-        setAboutFade(0)
-        setMainFade(1)
-        
-      
-      setAboutDisable(true)
-      setMainDisable(false)
-      
-      //made a set tme out here so that fade out can happen then display can go
-
-
-      setTimeout(() => 
-      setAboutDisplay('none'),
-        300)
-        setTimeout(() => 
-        setMainDisplay('inline'),
-        300)
-      
-      setLock(1)
-      
-  
-
-    }
-
-    document.addEventListener('keydown', function(e){
-      
-      if(e.key == 'ArrowRight' && lock == 0){
-        FadeOut()
-        
-      }
-
-  } );
+  function handleStart() {
+    navigate('/input')
+  }
 
   return (
     <>
-      <div className='About' style={{
-
-        opacity: aboutFade,
-        display: aboutDisplay,
-        
-        }}>
-         
-        This website transforms text into an abstract piece of geometric art
-
-        <br></br>
-
-        <button className='StartButton' onClick={FadeOut} disabled={aboutDisable}>
-          Begin
-          </button>
-
+      <div className="color-block color-block-1"></div>
+      <div className="color-block color-block-2"></div>
+      <div className='About'>
+        <div>
+          MONDRIAN ART GENERATOR
+        </div>
+        <div className="subtitle">
+          Transform text into geometric art inspired by Piet Mondrian
+        </div>
+        <button 
+          className='StartButton' 
+          onClick={handleStart}
+        >
+          CREATE ART
+        </button>
       </div>
     </>
   )
-
-}   
-    
-  
+}
