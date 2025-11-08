@@ -1,10 +1,9 @@
 import Art from './Art';
 import InfoText from './InfoText';
 import MainPage from './MainPage';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import React, { createContext, useState } from 'react';
 
-// Create context for sharing art data between components
 export const ArtContext = createContext();
 
 function App() {
