@@ -9,9 +9,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 2rem 2rem 2rem;
+  padding: 2rem;
   position: relative;
-  overflow: visible;
+  overflow-y: auto; /* Changed from hidden/visible to auto */
   gap: 2rem;
 }
 
@@ -113,12 +113,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
   width: 100%;
   position: relative;
   margin: 0;
   z-index: 3;
-  min-height: 50vh;
+  /* Removed: min-height: 50vh */
 }
 
 /* Clean canvas container */
@@ -130,11 +129,10 @@
 
 canvas {
   max-width: 100%;
-  max-height: 60vh;
+  max-height: 60vh; /* Reduced to allow more space */
   object-fit: contain;
   display: block;
 }
-
 .Batcon {
   display: flex;
   gap: 2.5rem;
@@ -268,14 +266,17 @@ canvas {
 
 /* Mobile devices */
 @media (max-width: 768px) {
-  .Art {
-    padding: 1.5rem 1rem;
-    gap: 1.5rem;
-    min-height: 100vh;
+
+  html, body {
+    overflow-y: auto;
     height: auto;
-    overflow: visible;
   }
-  
+
+  .Art {
+    min-height: auto; /* Allow natural height */
+    height: auto;
+    overflow-y: visible;
+  }
   .Batcon {
     flex-direction: column;
     gap: 1.2rem;
@@ -298,7 +299,7 @@ canvas {
   }
   
   .Artcon {
-    min-height: 40vh;
+    min-height: auto; /* Remove fixed height */
   }
   
   .art-title {
@@ -386,7 +387,7 @@ canvas {
 /* Ensure the page is always scrollable on mobile */
 @media (max-width: 768px), (max-height: 700px) {
   body {
-    overflow-y: auto;
+    overflow-y: visible;
   }
   
   .Art {
