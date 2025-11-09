@@ -1,7 +1,6 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import Sketch from "react-p5";
 import './Art.css'
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import seedrandom from "seedrandom";
 import { ArtContext } from './App';
@@ -15,6 +14,8 @@ function Art() {
     
     const [p5, setP5] = useState();
     const marqueeRef = useRef(null);
+    const titleRef = useRef(null);
+    const [isTextLong, setIsTextLong] = useState(false);
     
     var portraitWidth = window.screen.width - (window.screen.width/3)
     const portraitHeight = window.screen.height- (window.screen.height/3)
@@ -23,22 +24,32 @@ function Art() {
       portraitWidth = window.screen.width - (window.screen.width/6)
     }
 
-    // Calculate animation duration based on text length for constant speed
+    // Calculate if text is too long and needs marquee
     useEffect(() => {
-        if (marqueeRef.current && capsSeedText && capsSeedText.length > 43) {
+        if (titleRef.current && capsSeedText) {
+            const titleElement = titleRef.current;
             const textElement = marqueeRef.current;
-            const textWidth = textElement.scrollWidth;
-            const containerWidth = textElement.parentElement.offsetWidth;
             
-            // Calculate total distance (text width + container width for smooth entry/exit)
-            const totalDistance = textWidth + containerWidth;
-            
-            // Constant speed: 200 pixels per second (adjust this value to change speed)
-            const pixelsPerSecond = 200;
-            const duration = totalDistance / pixelsPerSecond;
-            
-            // Set the animation duration
-            textElement.style.animationDuration = `${duration}s`;
+            // Wait for DOM to render
+            setTimeout(() => {
+                const titleWidth = titleElement.offsetWidth;
+                const textWidth = textElement.scrollWidth;
+                const padding = 40; // Account for padding
+                const availableWidth = titleWidth - padding;
+                
+                // Enable marquee if text is wider than available space
+                const needsMarquee = textWidth > availableWidth;
+                setIsTextLong(needsMarquee);
+                
+                // Set animation duration based on actual text length
+                if (needsMarquee) {
+                    const containerWidth = titleElement.offsetWidth;
+                    const totalDistance = textWidth + containerWidth;
+                    const pixelsPerSecond = 200;
+                    const duration = totalDistance / pixelsPerSecond;
+                    textElement.style.animationDuration = `${duration}s`;
+                }
+            }, 100);
         }
     }, [capsSeedText]);
 
@@ -170,8 +181,6 @@ function Art() {
         }
     }
 
-    // Check if text is too long for marquee effect
-    const isTextLong = capsSeedText && capsSeedText.length > 43;
     const displayText = capsSeedText ? `"${capsSeedText}"` : 'GEOMETRIC COMPOSITION';
 
     return (
@@ -183,7 +192,7 @@ function Art() {
             <div className="mondrian-block block-4"></div>
             
             {/* Art title with marquee effect for long text */}
-            <div className="art-title">
+            <div className="art-title" ref={titleRef}>
                 <div className="marquee-container">
                     <div 
                         ref={marqueeRef}
