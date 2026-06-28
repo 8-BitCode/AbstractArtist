@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/AbstractArtist/static/css/main.32d7d6a6.css",
-    "main.js": "/AbstractArtist/static/js/main.f82911c4.js",
+    "main.css": "/AbstractArtist/static/css/main.24fdd7da.css",
+    "main.js": "/AbstractArtist/static/js/main.7bafc04f.js",
     "static/media/AvenirLTStd-BlackOblique.otf": "/AbstractArtist/static/media/AvenirLTStd-BlackOblique.751a36ea43f3d8bfdf01.otf",
     "index.html": "/AbstractArtist/index.html",
-    "main.32d7d6a6.css.map": "/AbstractArtist/static/css/main.32d7d6a6.css.map",
-    "main.f82911c4.js.map": "/AbstractArtist/static/js/main.f82911c4.js.map"
+    "main.24fdd7da.css.map": "/AbstractArtist/static/css/main.24fdd7da.css.map",
+    "main.7bafc04f.js.map": "/AbstractArtist/static/js/main.7bafc04f.js.map"
   },
   "entrypoints": [
-    "static/css/main.32d7d6a6.css",
-    "static/js/main.f82911c4.js"
+    "static/css/main.24fdd7da.css",
+    "static/js/main.7bafc04f.js"
   ]
 }
