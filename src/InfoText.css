@@ -3,151 +3,257 @@
   src: url("./fonts/AvenirLTStd-BlackOblique.otf");
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background: white;
+  background: #FFFFFF;
   min-height: 100vh;
-  font-family: 'Mondrian', sans-serif;
-  position: relative;
+  font-family: 'Mondrian', 'Arial Black', Arial, sans-serif;
   overflow: hidden;
 }
 
-/* Mondrian grid background */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    linear-gradient(90deg, transparent 24%, black 25%, black 26%, transparent 27%, transparent 49%, black 50%, black 51%, transparent 52%, transparent 74%, black 75%, black 76%, transparent 77%),
-    linear-gradient(0deg, transparent 24%, black 25%, black 26%, transparent 27%, transparent 49%, black 50%, black 51%, transparent 52%, transparent 74%, black 75%, black 76%, transparent 77%);
-  background-size: 100px 100px;
-  opacity: 0.1;
-  z-index: -1;
+/* ─── LANDING: two columns split by a thick vertical bar ─── */
+.landing {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  /* left color column | divider | right hero column */
+  grid-template-columns: 38% 18px 1fr;
+  grid-template-rows: 100%;
+  background: #000;
 }
 
-/* Color blocks */
-body::after {
-  content: '';
-  position: fixed;
-  top: 10%;
-  right: 5%;
-  width: 80px;
-  height: 120px;
-  background: #D01012; /* Mondrian red */
-  z-index: -1;
-  border: 3px solid black;
+/* ─── LEFT: stacked color blocks separated by horizontal bars ─── */
+.left-col {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-rows: 1fr 18px 1fr 18px 1fr;
+  overflow: hidden;
 }
 
-.About {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: black;
-  max-width: 90%;
-  background: white;
-  padding: 3rem;
-  border: 4px solid black;
+.cell-red {
+  grid-row: 1;
+  background: #E8000D;
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0s;
 }
 
-.About div {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+.lh-1 { grid-row: 2; background: #000; }
+
+.cell-blue {
+  grid-row: 3;
+  background: #0054A6;
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.12s;
+}
+
+.lh-2 { grid-row: 4; background: #000; }
+
+.cell-yellow {
+  grid-row: 5;
+  background: #FFD200;
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.24s;
+}
+
+/* ─── CENTER DIVIDER ─── */
+.center-div {
+  grid-column: 2;
+  grid-row: 1;
+  background: #000;
+}
+
+/* ─── RIGHT: hero content, vertically centered ─── */
+.right-col {
+  grid-column: 3;
+  grid-row: 1;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5vw;
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.3s;
+}
+
+/* ─── HERO TYPOGRAPHY ─── */
+.hero-eyebrow {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 1.6rem;
+}
+
+.hero-title {
+  font-family: 'Mondrian', 'Arial Black', Arial, sans-serif;
+  font-size: clamp(2.8rem, 4.5vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #000;
   margin-bottom: 2rem;
-  line-height: 1.2;
-  font-weight: bold;
-  letter-spacing: -1px;
 }
 
-.subtitle {
-  font-size: clamp(1rem, 3vw, 1.5rem) !important;
-  margin-bottom: 3rem !important;
-  opacity: 0.8;
-  font-weight: normal !important;
-  letter-spacing: 0 !important;
+.hero-title span { display: block; }
+
+.hero-title .accent-word { color: #E8000D; }
+
+.hero-subtitle {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 3rem;
+  max-width: 380px;
+  font-weight: normal;
+}
+
+/* ─── BUTTON ─── */
+.btn-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 1.2rem;
+}
+
+/* Pulsing ring */
+.btn-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border: 2px solid #E8000D;
+  pointer-events: none;
+  animation: ringPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  55%       { opacity: 0;   transform: scale(1.08); }
 }
 
 .StartButton {
-  font-family: 'Mondrian', sans-serif;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
-  letter-spacing: 1px;
+  font-family: 'Mondrian', 'Arial Black', Arial, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  background: white;
-  color: black;
+  background: #E8000D;
+  color: #fff;
+  border: none;
+  padding: 1.3rem 3rem;
   cursor: pointer;
-  border: 3px solid black;
-  padding: 1rem 2.5rem;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  margin: 1rem 0;
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease;
+  z-index: 1;
 }
 
+/* Black fill sweeps in on hover */
 .StartButton::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #FFD700; /* Mondrian yellow */
-  transition: left 0.3s ease;
-  z-index: -1;
+  inset: 0;
+  background: #000;
+  transform: translateX(-101%);
+  transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
 }
 
-.StartButton:hover::before {
-  left: 0;
+.StartButton:hover::before { transform: translateX(0); }
+.StartButton:hover { transform: translateY(-3px); }
+.StartButton:active { transform: translateY(0); }
+
+.btn-text,
+.btn-arrow { position: relative; z-index: 1; }
+
+.btn-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.22s ease;
+}
+.StartButton:hover .btn-arrow { transform: translateX(5px); }
+
+.btn-hint {
+  font-family: 'Courier New', monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.22em;
+  color: #BBB;
+  text-transform: uppercase;
 }
 
-.StartButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 4px 4px 0 black;
-}
-
-.color-block {
+/* ─── BOTTOM TAG ─── */
+.landing-tag {
   position: fixed;
-  border: 3px solid black;
+  bottom: 24px;
+  right: 3vw;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #CCC;
+  text-transform: uppercase;
+  animation: fadeIn 1.6s ease both 0.8s;
+  z-index: 10;
 }
 
-.color-block-1 {
-  top: 20%;
-  left: 5%;
-  width: 60px;
-  height: 80px;
-  background: #0045AD; /* Mondrian blue */
+/* ─── ANIMATIONS ─── */
+@keyframes slideDown {
+  from { transform: scaleY(0); transform-origin: top; }
+  to   { transform: scaleY(1); transform-origin: top; }
 }
 
-.color-block-2 {
-  bottom: 15%;
-  left: 15%;
-  width: 70px;
-  height: 70px;
-  background: #FFD700; /* Mondrian yellow */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@media only screen and (max-width: 768px) {
-  .About {
-    padding: 2rem;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 700px) {
+  body { overflow: auto; }
+
+  .landing {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 200px 18px auto;
   }
-  
-  .About div {
-    margin-bottom: 1.5rem;
+
+  /* Stack color blocks horizontally across the top */
+  .left-col {
+    grid-column: 1;
+    grid-row: 1;
+    grid-template-rows: none;
+    grid-template-columns: 1fr 18px 1fr 18px 1fr;
   }
-  
-  .StartButton {
-    padding: 0.8rem 2rem;
+
+  .cell-red    { grid-column: 1; grid-row: 1; animation: slideRight 0.8s cubic-bezier(0.16,1,0.3,1) both 0s; }
+  .lh-1        { grid-column: 2; grid-row: 1; }
+  .cell-blue   { grid-column: 3; grid-row: 1; animation: slideRight 0.8s cubic-bezier(0.16,1,0.3,1) both 0.1s; }
+  .lh-2        { grid-column: 4; grid-row: 1; }
+  .cell-yellow { grid-column: 5; grid-row: 1; animation: slideRight 0.8s cubic-bezier(0.16,1,0.3,1) both 0.2s; }
+
+  .center-div { grid-column: 1; grid-row: 2; height: 18px; }
+
+  .right-col {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 3rem 2rem 4rem;
   }
-  
-  .color-block {
-    display: none;
-  }
+
+  .hero-title { font-size: 2.6rem; }
+  .hero-subtitle { margin-bottom: 2.4rem; }
+
+  .landing-tag { right: 50%; transform: translateX(50%); }
+}
+
+@keyframes slideRight {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
 }

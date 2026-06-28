@@ -3,394 +3,256 @@
   src: url("./fonts/AvenirLTStd-BlackOblique.otf");
 }
 
-.Art {
-  background: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  position: relative;
-  overflow-y: auto; /* Changed from hidden/visible to auto */
-  gap: 2rem;
-}
-
-/* Enhanced Mondrian grid background - behind everything */
-.Art::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    /* Primary grid */
-    linear-gradient(90deg, 
-      transparent 24%, #000 25%, #000 26%, transparent 27%,
-      transparent 49%, #000 50%, #000 51%, transparent 52%,
-      transparent 74%, #000 75%, #000 76%, transparent 77%
-    ),
-    linear-gradient(0deg, 
-      transparent 24%, #000 25%, #000 26%, transparent 27%,
-      transparent 49%, #000 50%, #000 51%, transparent 52%,
-      transparent 74%, #000 75%, #000 76%, transparent 77%
-    );
-  background-size: 100px 100px;
-  opacity: 0.1;
-  z-index: 1;
-  animation: gridShift 30s linear infinite;
-}
-
-@keyframes gridShift {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(10px, 5px); }
-  50% { transform: translate(5px, 10px); }
-  75% { transform: translate(15px, 8px); }
-  100% { transform: translate(0, 0); }
-}
-
-/* Large Mondrian color blocks - above grid but below content */
-.mondrian-block {
-  position: fixed;
-  border: 4px solid #000;
-  z-index: 2;
-  opacity: 0.9;
-  animation: blockFloat 20s ease-in-out infinite;
-}
-
-.block-1 {
-  top: -100px;
-  right: -50px;
-  width: 300px;
-  height: 400px;
-  background: #D01012;
-  animation-delay: 0s;
-}
-
-.block-2 {
-  bottom: -80px;
-  left: -60px;
-  width: 250px;
-  height: 300px;
-  background: #0045AD;
-  animation-delay: 5s;
-}
-
-.block-3 {
-  top: 40%;
-  right: 15%;
-  width: 120px;
-  height: 120px;
-  background: #FFD700;
-  animation-delay: 10s;
-}
-
-.block-4 {
-  bottom: 30%;
-  left: 10%;
-  width: 150px;
-  height: 80px;
-  background: #D01012;
-  animation-delay: 15s;
-}
-
-@keyframes blockFloat {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% { 
-    transform: translateY(-20px) rotate(2deg);
-  }
-  50% { 
-    transform: translateY(10px) rotate(-1deg);
-  }
-  75% { 
-    transform: translateY(-15px) rotate(1deg);
-  }
-}
-
-.Artcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  position: relative;
+*, *::before, *::after {
   margin: 0;
-  z-index: 3;
-  /* Removed: min-height: 50vh */
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Clean canvas container */
-.canvas-container {
-  position: relative;
-  display: inline-block;
-  z-index: 4;
+body {
+  background: #FFFFFF;
+  font-family: 'Mondrian', 'Arial Black', Arial, sans-serif;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
-canvas {
-  max-width: 100%;
-  max-height: 60vh; /* Reduced to allow more space */
-  object-fit: contain;
-  display: block;
+/* ─── ART PAGE — outer grid frame ─── */
+.art-page {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 18px 1fr 18px;
+  grid-template-rows: 18px auto 18px 1fr 18px auto 18px;
+  background: #FFFFFF;
+  animation: fadeIn 0.5s ease both;
 }
-.Batcon {
-  display: flex;
-  gap: 2.5rem;
-  justify-content: center;
+
+/* Grid bars */
+.ap-v1 { grid-column: 1; grid-row: 1 / -1; background: #000; }
+.ap-v2 { grid-column: 3; grid-row: 1 / -1; background: #000; }
+.ap-h1 { grid-column: 1 / -1; grid-row: 1; background: #000; }
+.ap-h2 { grid-column: 1 / -1; grid-row: 3; background: #000; }
+.ap-h3 { grid-column: 1 / -1; grid-row: 5; background: #000; }
+.ap-h4 { grid-column: 1 / -1; grid-row: 7; background: #000; }
+
+/* ─── HEADER BAND ─── */
+.art-header {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  width: 100%;
-  padding: 2rem 0;
-  position: relative;
-  flex-shrink: 0;
-  z-index: 3;
-  margin-top: auto;
+  padding: 0.9rem 2.4rem;
+  gap: 2rem;
+  overflow: hidden;
 }
 
-.Back, .Download {
-  font-family: 'Mondrian', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+.title-block {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.art-eyebrow {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  cursor: pointer;
-  border: 4px solid black;
-  padding: 1.2rem 2.2rem;
-  border-radius: 0;
-  background: white;
-  color: black;
-  transition: all 0.3s ease;
-  min-width: 180px;
-  font-weight: bold;
+  color: #999;
+  margin-bottom: 0.28rem;
+}
+
+.art-title {
+  font-family: 'Mondrian', 'Arial Black', Arial, sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.9rem);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  animation: slideInTitle 0.8s cubic-bezier(0.16,1,0.3,1) both 0.1s;
+}
+
+.art-title mark {
+  background: #FFD200;
+  color: #000;
+  padding: 0 0.25em;
+}
+
+.header-badge {
+  font-family: 'Courier New', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FFF;
+  background: #000;
+  padding: 0.45rem 0.9rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── CANVAS ZONE ─── */
+.art-canvas-zone {
+  grid-column: 2;
+  grid-row: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #FFFFFF;
   position: relative;
   overflow: hidden;
-  z-index: 4;
+  min-height: 0;
 }
 
-.Back::before, .Download::before {
+/* Corner accent blocks */
+.art-canvas-zone::before,
+.art-canvas-zone::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
+  width: 48px;
+  height: 48px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+.canvas-inner {
+  position: relative;
+  display: block;
+  line-height: 0;
+  animation: canvasDrop 0.9s cubic-bezier(0.16,1,0.3,1) both 0.2s;
+}
+
+/* Canvas fills the zone — overflow:hidden on parent clips any excess */
+.canvas-inner canvas {
+  display: block;
+  width: 100vw !important;
+  height: calc(100vh - 90px - 70px) !important;
+}
+
+/* ─── FOOTER / BUTTONS ─── */
+.art-footer {
+  grid-column: 2;
+  grid-row: 6;
+  display: grid;
+  grid-template-columns: 1fr 18px 1fr;
+  align-items: stretch;
+  min-height: 70px;
+}
+
+.art-footer .foot-div { background: #000; }
+
+.Back {
+  font-family: 'Mondrian', 'Arial Black', Arial, sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: #FFFFFF;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
   width: 100%;
-  height: 100%;
-  transition: left 0.3s ease;
-  z-index: -1;
 }
 
 .Back::before {
-  background: #D01012;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #FFD200;
+  transform: translateY(101%);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.Back:hover::before { transform: translateY(0); }
+
+.Back span { position: relative; z-index: 1; }
+
+.Download {
+  font-family: 'Mondrian', 'Arial Black', Arial, sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: #000;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  width: 100%;
 }
 
 .Download::before {
-  background: #0045AD;
-}
-
-.Back:hover::before, .Download:hover::before {
-  left: 0;
-}
-
-.Back:hover, .Download:hover {
-  transform: translateY(-2px);
-  color: white;
-}
-
-/* Enhanced title styling */
-.art-title {
-  font-family: 'Mondrian', sans-serif;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: black;
-  margin-bottom: 1rem;
-  text-align: center;
-  font-weight: bold;
-  position: relative;
-  width: 80%;
-  max-width: 800px;
-  overflow: hidden;
-  white-space: nowrap;
-  background: white;
-  padding: 1rem 2rem;
-  border: 4px solid black;
-  flex-shrink: 0;
-  z-index: 3;
-}
-
-.art-title::before {
   content: '';
   position: absolute;
-  top: 5px;
-  left: 5px;
-  right: -5px;
-  bottom: -5px;
-  background: #FFD700;
-  z-index: -1;
+  inset: 0;
+  background: #E8000D;
+  transform: translateY(101%);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
 }
 
-.art-title::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 30%;
-  width: 40%;
-  height: 3px;
-  background: black;
+.Download:hover::before { transform: translateY(0); }
+.Download span { position: relative; z-index: 1; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* Marquee container */
-.marquee-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+@keyframes slideInTitle {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-.marquee-content {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee linear infinite;
+@keyframes canvasDrop {
+  from { opacity: 0; transform: scale(0.94) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.marquee-content:hover {
-  animation-play-state: paused;
+@keyframes expandBlock {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-.static-title {
-  display: inline-block;
-  animation: none !important;
-  padding-left: 0 !important;
-}
-
-/* Mobile devices */
+/* ─── MOBILE ─── */
 @media (max-width: 768px) {
+  body { overflow: auto; }
 
-  html, body {
-    overflow-y: auto;
+  .art-page {
     height: auto;
-  }
-
-  .Art {
-    min-height: auto; /* Allow natural height */
-    height: auto;
-    overflow-y: visible;
-  }
-  .Batcon {
-    flex-direction: column;
-    gap: 1.2rem;
-    padding: 2rem 0;
-    width: 100%;
-    position: relative;
-    margin-top: 2rem;
-  }
-  
-  .Back, .Download {
-    width: 90%;
-    max-width: 300px;
-    padding: 1rem 1.8rem;
-    font-size: 1.1rem;
-    min-width: auto;
-  }
-  
-  canvas {
-    max-height: 50vh;
-  }
-  
-  .Artcon {
-    min-height: auto; /* Remove fixed height */
-  }
-  
-  .art-title {
-    font-size: 1.3rem;
-    width: 90%;
-    padding: 0.8rem 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .mondrian-block {
-    display: none;
-  }
-}
-
-/* Small mobile devices */
-@media (max-width: 480px) {
-  .Art {
-    padding: 1rem 0.5rem;
-    gap: 1rem;
-  }
-  
-  .art-title {
-    font-size: 1.1rem;
-    padding: 0.6rem 1rem;
-  }
-  
-  canvas {
-    max-height: 45vh;
-  }
-  
-  .Batcon {
-    padding: 1.5rem 0;
-    margin-top: 1.5rem;
-  }
-  
-  .Back, .Download {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-  }
-}
-
-/* Very short screens - ensure scrollability */
-@media (max-height: 700px) {
-  .Art {
     min-height: 100vh;
-    height: auto;
-    overflow: visible;
+    grid-template-columns: 12px 1fr 12px;
+    grid-template-rows: 12px auto 12px 1fr 12px auto 12px;
   }
-  
-  canvas {
-    max-height: 50vh;
-  }
-  
-  .Artcon {
-    min-height: 40vh;
-  }
-  
-  .Batcon {
-    padding: 1.5rem 0;
-    margin-top: 1.5rem;
-  }
+
+  .art-header { padding: 1rem 1.4rem; grid-template-columns: 1fr; }
+  .header-badge { display: none; }
+
+  .art-canvas-zone { padding: 1.5rem 1.2rem; }
+  .canvas-inner canvas { max-height: 45vh; }
+
+  .art-footer { min-height: 56px; }
 }
 
-/* Extra short screens */
-@media (max-height: 500px) {
-  .Art {
-    padding: 1rem 0.5rem;
-  }
-  
-  canvas {
-    max-height: 40vh;
-  }
-  
-  .art-title {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 1rem;
-  }
-  
-  .Batcon {
-    padding: 1rem 0;
-    margin-top: -1rem;
-  }
-}
-
-/* Ensure the page is always scrollable on mobile */
-@media (max-width: 768px), (max-height: 700px) {
-  body {
-    overflow-y: visible;
-  }
-  
-  .Art {
-    overflow-y: visible;
-  }
+@media (max-height: 650px) {
+  .art-header { padding: 0.6rem 2rem; }
+  .canvas-inner canvas { max-height: 48vh; }
+  .art-footer { min-height: 56px; }
 }
