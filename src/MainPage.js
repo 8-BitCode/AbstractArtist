@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import './MainPage.css'
 import { useNavigate } from 'react-router-dom'
 import { ArtContext } from './App'
-
+//test
 function MainPage() {
     const navigate = useNavigate()
     const { setArtData } = useContext(ArtContext)
